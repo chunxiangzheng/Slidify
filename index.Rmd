@@ -1,0 +1,66 @@
+---
+title       : Central Limit Theorem
+subtitle    : Dynamic illustration with Rshiny App
+author      : Chunxiang Zheng
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Central Limit Theorem
+A statistical theory that states that given a sufficiently large sample size from a population with a finite level of variance, the mean of all samples from the same population will be approximately equal to the mean of the population.
+
+---
+
+## Large number of trials lead to smoother distribution
+
+```{r echo=FALSE}
+par(mfrow=c(1, 2))
+dist <- replicate(100,{data <- rnorm(10)
+                 mean(data)}
+            )
+hist(dist, main="100 repeats")
+
+dist <- replicate(1000,{data <- rnorm(10)
+                 mean(data)}
+            )
+hist(dist, main="1000 repeats")
+```
+
+---
+
+## Take an average of bigger number of samples makes distribution narrower
+```{r echo=FALSE}
+par(mfrow=c(1, 2))
+dist <- replicate(500,{data <- rnorm(10)
+                 mean(data)}
+            )
+hist(dist, main="Average 10 numbers")
+dist <- replicate(500,{data <- rnorm(100)
+                 mean(data)}
+            )
+hist(dist, main="Average 100 numbers")
+```
+
+---
+
+## Sample distribution other than normal distribution has same result
+
+```{r echo=FALSE}
+par(mfrow=c(1, 2))
+dist <- replicate(500,{data <- rnorm(20)
+                 mean(data)}
+            )
+hist(dist, main="Normal distribution")
+dist <- replicate(500,{data <- rnorm(20)
+                 mean(data)}
+            )
+hist(dist, main="Uniform distribution")
+```
+
+
+
